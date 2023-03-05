@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
 			});
 			return;
 		}
-		return res.status(500).send("Internal Server Error", err);
+		return res.status(500).send({error: "Internal Server Error", err});
 	});
 });
 

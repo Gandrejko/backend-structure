@@ -3,6 +3,7 @@ import knex from 'knex';
 import {routes} from "./api/routes/index.js";
 import {statEmitter} from "./helpers/statEmitter.js";
 import {dbConfig} from "./config/db.config.knex.js";
+import {statsService} from "./api/services/stats.service.js";
 
 const app = express();
 
@@ -27,13 +28,13 @@ app.get("/health", (req, res) => {
 
 const server = app.listen(port, () => {
 	statEmitter.on('newUser', () => {
-		stats.totalUsers++;
+		statsService.incrementUsers();
 	});
 	statEmitter.on('newBet', () => {
-		stats.totalBets++;
+		statsService.incrementBets();
 	});
 	statEmitter.on('newEvent', () => {
-		stats.totalEvents++;
+		statsService.incrementEvents();
 	});
 
 	console.log(`App listening at http://localhost:${port}`);
