@@ -74,7 +74,6 @@ router.put('/:id', (req, res) => {
 	}
 
 	if (req.params.id !== tokenPayload.id) {
-		console.log(req.params.id, tokenPayload.id)
 		return res.status(401).send({error: 'UserId mismatch'});
 	}
 
