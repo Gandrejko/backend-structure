@@ -1,7 +1,7 @@
 import {schemaValidate} from "../../helpers/validate/schema-validate.middleware.js";
 import {transactionPostSchema} from "../../db/schemas/transaction/transactionPostSchema.js";
 
-export const transactionValidate = (req, res, next) => {
+const transactionValidate = (req, res, next) => {
 	const {isValid, errorMessage} = schemaValidate(transactionPostSchema, req.body);
 
 	if (!isValid) {
@@ -10,3 +10,5 @@ export const transactionValidate = (req, res, next) => {
 
 	next();
 }
+
+export {transactionValidate}
